@@ -20,9 +20,3 @@ console.log(globaName); //globaName 출력된다.
   var age; //선언
 }
 console.log(age);
-
-{
-  age = 40; //할당
-  let age; //선언
-}
-console.log(age);
