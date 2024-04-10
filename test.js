@@ -55,6 +55,7 @@ surprise(add);
 */
 
 // 세번쨰.
+/*
 function add(num1, num2) {
   return num1 + num2;
 }
@@ -68,3 +69,18 @@ function surprise(operator) {
 }
 // surprise(add);
 surprise(divide);
+*/
+
+// 스코프
+function foo() {
+  console.log("global function foo");
+}
+
+function bar() {
+  function foo() {
+    console.log("local function foo");
+  }
+  foo();
+}
+
+bar();
