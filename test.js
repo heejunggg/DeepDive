@@ -72,6 +72,7 @@ surprise(divide);
 */
 
 // 스코프
+/*
 function foo() {
   console.log("global function foo");
 }
@@ -84,3 +85,36 @@ function bar() {
 }
 
 bar();
+*/
+
+let c = 7;
+{
+  let c = 3;
+  let b = 5;
+  console.log(c, b); // 3 5
+  {
+    let c = 3;
+    let d = 2;
+    console.log(c, b, d); // 3 5 2
+  }
+  console.log(b); // 5
+}
+// 지역변수가 전역변수보다 더 높다.
+
+let A = 7; //A가 7에서 4로 바뀐다.
+function f() {
+  let B = 5;
+  console.log(A, B); // 7 5
+  A = 4;
+
+  function fb() {
+    let C = 5;
+    let A = 3;
+    console.log(A, B, c); // 3 5 5
+    A = 5; //지역변수
+  }
+
+  fb();
+  console.log(A); // 4
+}
+f();
