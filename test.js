@@ -87,6 +87,7 @@ function bar() {
 bar();
 */
 
+/*
 let c = 7;
 {
   let c = 3;
@@ -118,3 +119,26 @@ function f() {
   console.log(A); // 4
 }
 f();
+*/
+
+// 16강 --------------------------------------------------------
+/*
+
+let obj = { a: 5 };
+
+Object.defineProperty(obj, 'a', {
+  writable: false
+});
+
+obj.a = 10; // 'a' 프로퍼티는 이제 변경 불가능합니다.
+console.log(obj.a); // 5
+
+*/
+
+let obj = { a: 5 };
+Object.defineProperty(obj, "a", {
+  writable: false,
+});
+
+obj.a = 10; // 'a' 프로퍼티는 이제 젼경이 불가능하다.
+console.log(obj.a); // 5
