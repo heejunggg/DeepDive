@@ -59,9 +59,23 @@ console.log(remove(arr6, 2));
 console.log(remove(arr6, 10));
 
 // filter
+/*
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const uniqueNumbers = numbers.filter((element) => {
   return element % 2 === 0 && element < 5;
 });
 console.log(uniqueNumbers);
+*/
+
+const numbers = [1, 2, 2, 3, 4, 4, 5];
+
+const um = numbers.filter((element, index, arr) => {
+  return arr.indexOf(element) === index;
+  // 요소가 1일때 indexOf(1)==0번쨰 이므로  ===index -> 참
+  // 요소가 2일떄 indexOf(2)==1이므로 ===index와 같지않다. 거짓.
+  // 요소가 2일떄 indexOf(2)==2이므로 === index와 같으므로 -> 참..
+});
+
+console.log(um);
+console.log(numbers);
