@@ -81,7 +81,7 @@ console.log(um);
 console.log(numbers);
 
 // reduce
-const sum = [1, 2, 3, 4].reduce(
+/*const sum = [1, 2, 3, 4].reduce(
   (accumulator, currentValue, index, array) => accumulator + currentValue,
   0
 );
@@ -116,3 +116,56 @@ const sum4 = nums.reduce((acc, cur) => {
   return acc + cur;
 }, 0);
 console.log(sum4); // 15
+
+// --> reduce --> 객체의 프로퍼티합
+const products = [
+  { id: 1, price: 100 },
+  { id: 2, price: 200 },
+  { id: 3, price: 300 },
+];
+const sum5 = products.reduce((accp, crr) => {
+  // return accp + products.price
+  return accp + crr.price;
+}, 0);
+console.log(sum5);
+*/
+
+// some 예제
+// 배열 요소중 하나라도 10보다 큰게 있니?
+[5, 10, 15].some((item) => item > 10); // true.
+
+// 빈 배열인 경우 언제나 false
+[].some((item) => item > 3); // false
+
+// every 예제
+// 배열 요소중 모두 3보다 크니?
+[5, 10, 15].every((item) => item > 3);
+
+// 빈 배열인 경우 언제나 true
+[].every((item) => item > 3); //true
+
+// find 예제
+const users = [
+  { id: 1, name: "park" },
+  { id: 2, name: "tae" },
+  { id: 2, name: "lee" },
+  { id: 3, name: "yan" },
+];
+
+const userfind = users.find((user) => {
+  return user.id === 2;
+});
+console.log(userfind); //true인 첫번재 요소를 반환, 배열아니다.{ id: 2, name: 'tae' }
+
+// 비슷한 filter로 써보자.
+const userfilter = users.filter((user) => {
+  return user.id === 2;
+});
+console.log(userfilter); // true인 요소만 추출한 새로운 배열을 반환 [ { id: 2, name: 'tae' }, { id: 2, name: 'lee' } ]
+
+// finde 다른예제
+const find2 = [10, 51, 31, 61].find((item) => item === 51);
+console.log(find2); // 51
+
+const filter2 = [10, 51, 31, 61].filter((item) => item === 51);
+console.log(filter2); // [51]
