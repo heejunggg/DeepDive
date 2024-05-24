@@ -157,15 +157,45 @@ const userfind = users.find((user) => {
 });
 console.log(userfind); //true인 첫번재 요소를 반환, 배열아니다.{ id: 2, name: 'tae' }
 
+// findIndex
+const userfindIndex = users.findIndex((user) => {
+  return user.id === 2;
+});
+console.log(`userfindIndex: ${userfindIndex}`);
+
+// findIndex - 2
+// name이 park인 인덱스를 구하라
+const userfindIndex2 = users.findIndex((user) => user.name === "park");
+console.log(`findeIndex.name : ${userfindIndex2}`);
+
 // 비슷한 filter로 써보자.
 const userfilter = users.filter((user) => {
   return user.id === 2;
 });
 console.log(userfilter); // true인 요소만 추출한 새로운 배열을 반환 [ { id: 2, name: 'tae' }, { id: 2, name: 'lee' } ]
 
-// finde 다른예제
+// find 다른예제
 const find2 = [10, 51, 31, 61].find((item) => item === 51);
 console.log(find2); // 51
 
 const filter2 = [10, 51, 31, 61].filter((item) => item === 51);
 console.log(filter2); // [51]
+
+// flatMap 예제-1
+const arr = ["hello, world"];
+// map과 flat을 순차적으로 실행
+const result_arr = arr.map((x) => x.split("").flat());
+console.log(result_arr);
+/* 결과.
+[
+  'h', 'e', 'l', 'l',
+  'o', ',', ' ', 'w',
+  'o', 'r', 'l', 'd'
+]
+*/
+
+const arr1 = ["hello", "world"];
+const result_arr1 = arr1
+  .map((str, index) => [index, [str, str.length]])
+  .flat(2);
+console.log(result_arr1); // [ 0, 'hello', 5, 1, 'world', 5 ]
