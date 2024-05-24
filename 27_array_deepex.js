@@ -86,3 +86,33 @@ const sum = [1, 2, 3, 4].reduce(
   0
 );
 console.log(sum); // 10
+
+// reduce-1예제
+// 평균구하기
+const values = [1, 2, 3, 4, 5, 6];
+const avg = values.reduce((acc, cur, i, { length }) => {
+  //합 / lengh =평균
+  // return i === (acc + cur) / length
+  // 조건 ? 값1 : 값2
+  // 마지막 순회가 아니면 누적값을,마지막 순회면 누적값으로 평균을 구해 반환한다.
+  return i === length - 1 ? (acc + cur) / length : acc + cur;
+}, 0);
+console.log(avg);
+
+// reduce-2예제 합
+// forEach와 reduce
+
+const nums = [1, 2, 3, 4, 5];
+let total = 0;
+const sum2 = nums.forEach((num) => {
+  return (total = total + num);
+});
+console.log(sum2); // undefined가 된다. forEach는 결과값이 undefined
+console.log(total); // 15
+
+// --> reduce로 했을때
+
+const sum4 = nums.reduce((acc, cur) => {
+  return acc + cur;
+}, 0);
+console.log(sum4); // 15
