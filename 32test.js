@@ -102,3 +102,73 @@ console.log(str8);
 console.log("splt=>", str8.split()); // ['How are you?]
 // 두 번째 인수로 배열의 길이를 지정할 수 있다.
 console.log("split=>", str8.split(" ", 2)); // ['how', 'are']
+
+// [ 34강]
+
+const array = [1, 2, 3];
+
+// 배열은 Array.prototype의 Symbol.iterator 메서드를 상속받는 이터러블이다.
+console.log(Symbol.iterator in array); // true
+
+// 이터러블인 배열은 *** for..of문으로 순회가 가능하다.
+for (const item of array) {
+  console.log(item); // 1 2 3
+}
+
+// 이터러블인 배열은 *** 스프레드 문법의 대상으로 사용할 수 있다.
+console.log([...array]); //[1,2,3]
+
+//  이터러블 배열은 *** 배열 디스트럭처링 할당의 대상으로 사용할 수 있다.
+const [a, ...rest] = array;
+console.log(a, rest); // 1 [2, 3]
+
+// Symbol.iterator 메서드르 직접 구현하지 않거나 상속받지 않은 일반객체는
+// 이터러블 프로토콜을 준수한 이터러블이 아니다.
+// 따라서 일반객체는 for..of로 순회할수 없고, 스프레드 문법과 배열디스트럭처링 할당의 대상으로 사용할 수 없다.
+// 위의 예제와 비교
+
+const obj = { a: 1, b: 2 };
+console.log(Symbol.iterator in obj); // false
+
+// 이터버르이 아닌 일반 객체는 for..of 문으로 순회할 수 없다.
+// for (const item of obj) {
+//   console.log(item); //TypeError: obj is not iterable
+// }
+
+// 이터러블이 아닌 일반 객체는 배열 디스크럭처링 할당의 대상으로 사용할수 없다.
+//const [a, b] = obj; //TypeError: obj is not iterable
+
+// 배열은 이터러블 프로토콜을 준수한 이터러블이다.
+const array1 = [1, 2, 3];
+
+// Symbol.itertator 메서드는 이터레이터를 반환한다.
+// 이터레이터는 next 메서드를 갖는다.
+const iterator = array1[Symbol.iterator]();
+
+// next 메서드를 호출하면 이터럽르을 순회하며 순회 결과를 나타내는
+//이터레이터 리절트 객체를 반환한다.
+// 이터레이터 리절트 객체는 value와 done 프로퍼티를 갖는 *객체*다
+
+console.log(iterator.next()); // { value: 1, done: false }
+console.log(iterator.next()); // { value: 2, done: false }
+console.log(iterator.next()); // { value: 3, done: false }
+console.log(iterator.next()); // { value: undefined, done: true }
+
+//
+for (const item of [1, 2, 3]) {
+  // 변수에 순차적으로 1,2,3이 할당된다.
+  console.log(item); // 1 2 3
+}
+// 유사배열객체
+const arrayLike = {
+  0: 1,
+  1: 2,
+  2: 3,
+  length: 3,
+};
+for (const item of arrayLike) {
+  console.log(item); // TypeError: arrayLike is not iterable
+}
+// 하지만 아래처럼 Array.from메서드를 사용하여 배열로 간단히 변환할 수 있다.
+const arr = Array.from(arrayLike);
+console.log(arr); // [1, 2, 3]
